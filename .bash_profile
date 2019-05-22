@@ -6,8 +6,8 @@ alias ll="ls -la"
 alias ping="ping -c 5"
 alias lp="ls -p"
 alias h=history
-alias cdg="cd ~/Documents/personal/git"
-alias weather="printf '\e[8;100;130t' && curl -4 wttr.in/Shanghai?m"
+alias cdg="cd ~/Documents/git"
+alias weather="printf '\e[8;100;130t' && curl -4 wttr.in/Singapore?m"
 alias mongodb="mongod --dbpath /Users/darryl/data/db"
 alias ack="ack --css '\d*\.\d*px' && ack --css -i '#[-_a-z][-_a-z0-9]*(?=[^}]*\{)' && ack --css -i 'background:\s*#[a-f0-9]*;' && ack --css '\b0(px|r?em)'"
 
@@ -78,25 +78,3 @@ myinfo () {
 printf '\e[3;0;0t' && printf '\e[8;100;130t'
 echo "Hi $USER!"
 echo -e "Today is $(date)\nUptime: $(uptime)"
-
-# Run `mov2frames name-of-mov.mov` to extract frames from the movie file
-# Run `mov2frames name-of-mov.mov 300` to extract frames from the movie file at a maximum width of 300 pixels
-# Frames will be exported into a `frames/` folder
-# NOTE: if the frames folder exists and contains files that match the filename `frame_%03d.png`, no frames will be generated
-mov2frames() {
-    if [ ! -z "$2" ]
-    then
-      size=$2
-    else
-      size=-1
-    fi
-
-    tmp_dir="./screens"
-    mkdir $tmp_dir
-
-    echo "\033[33m Extract frames $1 ($2px wide)"
-    echo "\033[32m ## Extracting frames..."
-
-    # Assumes video with 30 fps
-    ffmpeg -i $1 -vf scale=$size:-1 -r 1 $tmp_dir/frame_%03d.png
-}
