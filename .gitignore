@@ -15,7 +15,7 @@ pids
 lib-cov
 
 # Editor config
-.editorcfg
+#.editorcfg
 
 # Coverage directory used by tools like istanbul
 coverage
