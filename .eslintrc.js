@@ -1,33 +1,54 @@
 module.exports = {
-  "extends": ["airbnb", "plugin:jest/recommended"],
-  "parser": "babel-eslint",
-  "plugins": ["react", "import", "jest"],
-  "env": {
-    "browser": true,
-    "node": true
+  parser: '@typescript-eslint/parser',
+  extends: [
+    'airbnb',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:prettier/recommended',
+    'prettier/@typescript-eslint',
+  ],
+  plugins: ['@typescript-eslint', 'prettier'],
+  parserOptions: {
+    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
+    sourceType: 'module', // Allows for the use of imports
   },
-  "rules": {
-    "strict": 0,
-    "semi": ["error", "never"],
-    "import/no-unresolved": 0,
-    "import/extensions": ["error", "ignorePackages", {
-      "js": "never",
-      "mjs": "never",
-      "jsx": "never"
-    }],
-    "jsx-a11y/anchor-is-valid": ["error", {
-      "components": [ "Link" ],
-      "specialLink": [ "to" ]
-    }],
-    "react/jsx-uses-react": 2,
-    "react/no-danger": 0,
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "react/forbid-prop-types": 0,
-    "jest/no-disabled-tests": "warn",
-    "jest/no-focused-tests": "error",
-    "jest/no-identical-title": "error",
-    "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error",
-    "jsx-a11y/label-has-for": 0
-  }
-};
+  env: {
+    browser: true,
+    node: true,
+  },
+  settings: {
+    'import/extensions': ['.js', '.jsx', '.ts', '.tsx'],
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx'],
+    },
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
+  },
+  ignorePatterns: ['gatsby-config.js', 'node_modules/'],
+  rules: {
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'error',
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': 'error',
+    quotes: 'off',
+    '@typescript-eslint/quotes': [
+      2,
+      'single',
+      {
+        avoidEscape: true,
+      },
+    ],
+    indent: ['error', 2, { SwitchCase: 1 }],
+    'prettier/prettier': [
+      'error',
+      {
+        trailingComma: 'es5',
+        semi: false,
+        singleQuote: true,
+        printWidth: 120,
+      },
+    ],
+  },
+}
